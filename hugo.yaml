@@ -1,18 +1,20 @@
-baseURL: https://mcpchina.netlify.app/
+baseURL: https://mcp.fleeto.us/
 languageCode: en-us
 title: MCP 中文文档
 theme: docsy
 
 
-
-# menus:
-#   main:
-#   - name: Documents
-#     pageRef: /docs
-#     weight: 10
-#   - name: Blog
-#     pageRef: /blog
-#     weight: 20
-#   - name: About
-#     pageRef: 
-#     weight: 30
+params:
+  github_repo: https://github.com/fleeto/mcpchn
+  offlineSearch: true
+menus:
+  main:
+  - name: 文档
+    pageRef: /docs
+    weight: 10
+  - name: 博客（伪架构师）
+    url: https://blog.fleeto.us/
+    weight: 20
+  - name: About
+    pageRef: /community/about
+    weight: 30
