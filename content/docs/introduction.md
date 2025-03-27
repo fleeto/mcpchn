@@ -1,8 +1,9 @@
 ---
 date: '2025-03-24T11:45:03+08:00'
 draft: false
-url: /
-title: 介绍
+title: MCP 简介
+alias:
+    - /
 weight: 1
 description: '开始了解 Model Context Protocol (MCP)'
 ---
