@@ -1,7 +1,8 @@
-baseURL: https://example.org/
+baseURL: https://mcpchina.netlify.app/
 languageCode: en-us
 title: MCP 中文文档
 theme: docsy
+
 
 
 # menus:
