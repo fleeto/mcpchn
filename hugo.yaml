@@ -1,17 +1,17 @@
 baseURL: https://example.org/
 languageCode: en-us
-title: My New Hugo Site
+title: MCP 中文文档
 theme: docsy
 
 
-menus:
-  main:
-  - name: Documents
-    pageRef: /docs
-    weight: 10
-  - name: Blog
-    pageRef: /blog
-    weight: 20
-  - name: About
-    pageRef: 
-    weight: 30
+# menus:
+#   main:
+#   - name: Documents
+#     pageRef: /docs
+#     weight: 10
+#   - name: Blog
+#     pageRef: /blog
+#     weight: 20
+#   - name: About
+#     pageRef: 
+#     weight: 30
