@@ -4,6 +4,10 @@ title: MCP 中文文档
 theme: docsy
 
 
+services:
+  googleAnalytics:
+    id: G-5YLEFRZK02
+
 params:
   github_repo: https://github.com/fleeto/mcpchn
   offlineSearch: true
