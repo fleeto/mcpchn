@@ -16,6 +16,9 @@ menus:
   - name: 文档
     pageRef: /docs
     weight: 10
+  - name: 规范
+    pageRef: /spec
+    weight: 15    
   - name: 博客（伪架构师）
     url: https://blog.fleeto.us/
     weight: 20
