@@ -5,7 +5,7 @@ title: "针对服务器开发者"
 description: "开始构建您自己的服务器，供 Claude for Desktop 和其他客户端使用。"
 ---
 
-在本教程中，我们将构建一个简单的 MCP 天气服务，并将其连接到 Claude for Desktop 主机。我们将从基础设置开始，然后逐步实现更复杂的用例。
+在本教程中，我们将构建一个简单的 MCP 天气服务，并将其连接到 Claude for Desktop 。基础设置开始，逐步实现更复杂的用例。
 
 ## 我们将构建什么
 
@@ -19,7 +19,7 @@ description: "开始构建您自己的服务器，供 Claude for Desktop 和其�
 
 > 服务器可以连接到任何客户端。这里我们选择了 Claude for Desktop 来保持简单，但我们还提供了[如何构建您自己的客户端指南](quickstart/client)以及[其他客户端列表](clients)。
 >
-> "为什么选择 Claude for Desktop 而不是 Claude.ai？">
+> "为什么选择 Claude for Desktop 而不是 Claude.ai？"
 > 因为服务器是本地运行的，所以 MCP 目前仅支持桌面主机。远程主机正在积极开发中。
 
 ## MCP 的核心概念
@@ -35,7 +35,8 @@ MCP 服务器可以提供三种主要类型的功能：
 {{< tabpane persist="lang" text=true >}}
 
 {{% tab header="Python" %}}
-让我们从构建天气服务开始，接下来要构建的全部代码保存在 [weather-server-python 项目中](https://github.com/modelcontextprotocol/quickstart-resources/tree/main/weather-server-python)。
+
+让我们从构建天气服务开始，接下来要构建的全部代码保存在 [`weather-server-python` 项目中](https://github.com/modelcontextprotocol/quickstart-resources/tree/main/weather-server-python)。
 
 ### 必备知识
 
@@ -130,7 +131,7 @@ FastMCP 类使用 Python 类型提示和文档字符串自动生成工具定义�
 
 #### 辅助函数
 
-接下来，让我们添加用于查询和格式化国家天气服务 API 数据的辅助函数：
+接下来，让我们添加一个辅助函数，查询天气服务 API 并对结果数据进行格式化：
 
 ```python
 async def make_nws_request(url: str) -> dict[str, Any] | None:
@@ -238,7 +239,7 @@ if __name__ == "__main__":
 
 > Claude for Desktop 目前在 Linux 上尚不可用。Linux 用户可以继续进行 [构建客户端](quickstart/client) 教程，以构建连接到我们刚刚构建的服务器的 MCP 客户端。
 
-首先，确保您已安装 Claude for Desktop。您可以[在这里安装最新版本](https://claude.ai/download)。 如果您已经安装了 Claude for Desktop，请确保已更新到最新版本。
+首先，确保您已安装 Claude for Desktop。您可以[安装最新版本](https://claude.ai/download)。 如果您已经安装了 Claude for Desktop，请确保已更新到最新版本。
 
 我们需要为 Claude for Desktop 配置您想要使用的 MCP 服务器。为此，请在文本编辑器中打开您的 Claude for Desktop 应用程序配置，位于 `~/Library/Application Support/Claude/claude_desktop_config.json`。如果文件不存在，请确保创建它。
 
@@ -247,9 +248,9 @@ if __name__ == "__main__":
 - **Linux/MacOS**：`code ~/Library/Application\ Support/Claude/claude_desktop_config.json`
 - **Windows**：`code $env:AppData\Claude\claude_desktop_config.json`
 
-然后在 mcpServers 键中添加您的服务器。只有在至少配置了一个服务器的情况下，MCP UI 元素才会显示在 Claude for Desktop 中。
+然后在 `mcpServers` 键中添加您的服务器。至少要配置一个服务器，MCP UI 元素才会显示在 Claude for Desktop 中。
 
-在这种情况下，我们将像这样添加我们的单个天气服务器：
+添加一个天气服务器的定义：
 
 ```json
 {
@@ -267,7 +268,7 @@ if __name__ == "__main__":
 }
 ```
 
-> 您可能需要在 `command` 字段中输入 `uv` 可执行文件的完整路径。您可以通过在 MacOS/Linux 上运行 `which uv` 或在 Windows 上运行 `where uv` 来获取此路径。 
+> 您可能需要在 `command` 字段中输入 `uv` 可执行文件的完整路径。您可以通过在 MacOS/Linux 上运行 `which uv` 或在 Windows 上运行 `where uv` 来获取此路径。
 > 请确保传入服务器的绝对路径。
 
 这将告诉 Claude for Desktop：
@@ -382,7 +383,7 @@ new-item src\index.ts
 }
 ```
 
-现在让我们深入构建您的服务器。
+接下来开始构建服务器代码。
 
 ### 构建您的服务器
 
@@ -407,7 +408,7 @@ const server = new McpServer({
 
 #### 辅助函数
 
-接下来，让我们添加用于查询和格式化国家天气服务 API 数据的辅助函数：
+接下来，添加一个辅助函数，用于查询和格式化国家天气服务 API 数据：
 
 ```typescript
 // Helper function for making NWS API requests
@@ -640,7 +641,6 @@ main().catch((error) => {
 
 ### 使用 Claude for Desktop 测试您的服务器
 
-
 > Claude for Desktop 目前在 Linux 上尚不可用。Linux 用户可以继续进行 [构建客户端](/quickstart/client) 教程，以构建连接到我们刚刚构建的服务器的 MCP 客户端。
 
 首先，确保您已安装 Claude for Desktop。[您可以在这里安装最新版本。](https://claude.ai/download) 如果您已经安装了 Claude for Desktop，**请确保已更新到最新版本。**
@@ -663,7 +663,7 @@ code $env:AppData\Claude\claude_desktop_config.json
 
 然后，您将在 `mcpServers` 键中添加您的服务器。只有在至少配置了一个服务器的情况下，MCP UI 元素才会显示在 Claude for Desktop 中。
 
-在这种情况下，我们将像这样添加我们的单个天气服务器：
+接下来添加天气服务器的配置内容：
 
 - **MacOS/Linux**
 
@@ -697,7 +697,7 @@ code $env:AppData\Claude\claude_desktop_config.json
 
 这将告诉 Claude for Desktop：
 
-1. 有一个名为 "weather" 的 MCP 服务器
+1. 有一个名为 `weather` 的 MCP 服务器
 2. 通过运行 `node /ABSOLUTE/PATH/TO/PARENT/FOLDER/weather/build/index.js` 启动它
 
 保存文件，然后重启 **Claude for Desktop**。
@@ -712,7 +712,7 @@ code $env:AppData\Claude\claude_desktop_config.json
 让我们开始构建我们的天气服务器吧！完整代码可以在 [starter-stdio-server](https://github.com/spring-projects/spring-ai-examples/tree/main/model-context-protocol/weather/starter-stdio-server) 项目中找到。
 
 有关更多信息，请参阅 [MCP Server Boot Starter](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html) 参考文档。
-对于手动实现 MCP 服务器，请参考 [MCP Server Java SDK 文档](/sdk/java/mcp-server)。
+要手动实现 MCP 服务器，请参考 [MCP Server Java SDK 文档](/sdk/java/mcp-server)。
 
 ### 系统要求
 
@@ -772,7 +772,7 @@ spring:
 
 [服务器配置属性](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html#_configuration_properties)文档列出了所有可用属性。
 
-现在让我们深入构建您的服务器。
+接下来构建您的服务器。
 
 ## 构建服务器
 
@@ -994,7 +994,7 @@ spring.ai.mcp.client.stdio.servers-configuration=file:PATH/TO/claude_desktop_con
 {{% /tab %}}
 {{% tab header="Kotlin" %}}
 
-让我们开始构建我们的天气服务器吧！您可以在 [weather-stdio-server](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/samples/weather-stdio-server) 项目中找到本案例的源代码。
+开始构建天气服务，在 [weather-stdio-server](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/samples/weather-stdio-server) 项目中找可以到本案例的源代码。
 
 ### 必备知识
 
@@ -1045,7 +1045,7 @@ gradle init
 
 运行 `gradle init` 后，您将看到创建项目的选项。
 
-选择 `Application` `作为项目类型，Kotlin` 作为编程语言，`Java 17` 作为 Java 版本。
+选择 `Application` 作为项目类型，`Kotlin` 作为编程语言，`Java 17` 作为 Java 版本。
 
 或者，您可以使用 IntelliJ IDEA 项目向导 创建一个 Kotlin 应用程序。
 
@@ -1079,7 +1079,7 @@ dependencies {
 
 另外，在您的构建脚本中添加以下插件：
 
-```kotlin
+```groovy
 plugins {
     kotlin("plugin.serialization") version "your_version_of_kotlin"
     id("com.github.johnrengelman.shadow") version "8.1.1"
@@ -1296,13 +1296,13 @@ server.addTool(
 fun main() = `run mcp server`()
 ```
 
-确保运行 `./gradlew build` 来构建您的服务器。这是让您的服务器连接起来的非常重要的一步。
+运行 `./gradlew build` 来构建服务器。这是让您的服务器连接起来的非常重要的一步。
 
 现在让我们从现有的 MCP 主机 Claude for Desktop 测试您的服务器。
 
 ### 使用 Claude for Desktop 测试您的服务器
 
-> Claude for Desktop 目前在 Linux 上尚不可用。Linux 用户可以继续进行 [构建客户端](quickstart/client) 教程，以构建连接到我们刚刚构建的服务器的 MCP 客户端。
+> Claude for Desktop 目前在 Linux 上尚不可用。Linux 用户可以继续进行[构建客户端](quickstart/client) 教程，以构建连接到我们刚刚构建的服务器的 MCP 客户端。
 
 首先，确保您已安装 Claude for Desktop。您可以在这里安装最新版本。 如果您已经安装了 Claude for Desktop，请确保已更新到最新版本。
 
@@ -1378,7 +1378,7 @@ fun main() = `run mcp server`()
 
 ![2tools](images/available-mcp-tools.png)
 
-如果您的服务器未被 Claude for Desktop 识别，请转到 [故障排除](#故障排除) 部分查看调试建议。
+如果您的服务器未被 Claude for Desktop 识别，请转到[故障排除](#故障排除) 部分查看调试建议。
 
 如果锤子图标已显示，您现在可以通过在 Claude for Desktop 中运行以下命令来测试您的服务器：
 
@@ -1406,7 +1406,7 @@ fun main() = `run mcp server`()
 
 ### Claude for Desktop 集成问题
 
-**从 Claude for Desktop 获取日志**
+#### 从 Claude for Desktop 获取日志
 
 Claude.app 中与 MCP 相关的日志会写入 `~/Library/Logs/Claude` 中的日志文件：
 
@@ -1436,9 +1436,9 @@ tail -n 20 -f ~/Library/Logs/Claude/mcp*.log
 
 #### 这些都不起作用。我该怎么办？
 
-请参阅我们的 [调试指南](docs/tools/debugging)，获取更好的调试工具和更详细的指导。
+请参阅我们的[调试指南](docs/tools/debugging)，获取更好的调试工具和更详细的指导。
 
-### 错误：无法检索网格点数据
+### 错误：无法检索地点天气数据
 
 这通常意味着：
 
@@ -1452,11 +1452,11 @@ tail -n 20 -f ~/Library/Logs/Claude/mcp*.log
 - 在请求之间添加短暂延迟
 - 检查 NWS API 状态页面
 
-#### 错误：没有 [STATE] 的活动警报
+#### 错误：没有 [某个州] 的活动警报
 
 这不是错误——只是表示该州当前没有天气警报。尝试其他州或在恶劣天气时检查。
 
-### 如需更高级的故障排除，请查看我们的 [调试 MCP 指南](docs/tools/debugging)
+### 如需更高级的故障排除，请查看我们的[调试 MCP 指南](docs/tools/debugging)
 
 ## 下一步
 

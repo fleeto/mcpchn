@@ -4,9 +4,9 @@ draft: false
 title: '针对客户端开发者'
 ---
 
-开始构建可以与所有 MCP 服务器集成的自己的客户端。
+开始构建一个自己的客户端，并能够与所有 MCP 服务器进行集成。
 
-在本教程中，您将学习如何构建一个由 MCP 服务器驱动的聊天机器人客户端。阅读[服务器快速入门指南](/docs/quickstart/server)将帮助您完成构建第一个服务器的基础知识。
+在本教程中，您将学习如何构建一个由 MCP 服务器驱动的聊天机器人客户端。[服务器快速入门指南](/docs/quickstart/server)中包含完成构建第一个服务器所需要的基础知识。
 
 {{< tabpane persist="lang" text=true >}}
 
@@ -26,7 +26,7 @@ title: '针对客户端开发者'
 
 首先，使用 `uv` 创建一个新的 Python 项目：
 
-```python
+```shell
 # Create project directory
 uv init mcp-client
 cd mcp-client
@@ -77,7 +77,7 @@ echo ".env" >> .gitignore
 
 ### 客户端基本结构
 
-首先，让我们设置导入并创建基本的客户端类：
+首先，让我们导入模块，并创建基本的客户端类：
 
 ```yaml
 import asyncio
@@ -260,7 +260,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-您可以在[此处](https://gist.github.com/zckly/f3f28ea731e096e53b39b47bf0a2d4b1)找到完整的 client.py 文件 。
+您可以在[此处](https://gist.github.com/zckly/f3f28ea731e096e53b39b47bf0a2d4b1)找到完整的 `client.py` 文件。
 
 ### 关键组件说明
 
@@ -339,7 +339,7 @@ uv run client.py path/to/build/index.js # node server
     - 查看工具执行
     - 获取 Claude 的响应
 
-下面是从服务器快速启动连接到天气服务器时的示例：
+下面是连接到天气服务器时的示例：
 
 ![client python](images/client-claude-cli-python.png)
 
@@ -359,7 +359,7 @@ uv run client.py path/to/build/index.js # node server
 
 ### 错误处理
 
-- 始终将工具调用包装在 try-catch 块中
+- 在 `try-catch` 块中调用 tool
 - 提供有意义的错误消息
 - 妥善处理连接问题
 
@@ -381,7 +381,7 @@ uv run client.py path/to/build/index.js # node server
 
 - 仔细检查服务器脚本的路径是否正确
 - 如果相对路径不起作用，请使用绝对路径
-- 对于 Windows 用户，请确保在路径中使用正斜杠（/）或转义反斜杠(\)
+- 对于 Windows 用户，请确保在路径中使用正斜杠（`/`）或转义反斜杠(`\`)
 - 验证服务器文件具有正确的扩展名（Python 为 `.py`，Node.js 为 `.js`）
 
 正确路径使用示例：
@@ -730,7 +730,7 @@ node build/index.js path/to/server.py # python server
 node build/index.js path/to/build/index.js # node server
 ```
 
-> 如果您继续服务器快速入门中的天气教程，您的命令可能如下所示：
+> 如果使用快速入门章节中提到的的天气服务，您的命令可能如下所示：
 > `node build/index.js .../quickstart-resources/weather-server-typescript/build/index.js`
 
 ### 客户端的行为

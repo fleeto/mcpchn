@@ -3,6 +3,7 @@ date: '2025-03-27T09:56:24+08:00'
 draft: false
 title: "核心架构"
 description: "了解 MCP 如何连接客户端、服务器和 LLMs"
+weight: 10
 ---
 
 模型上下文协议（Model Context Protocol，MCP）基于灵活且可扩展的架构构建，可实现 LLM 应用和集成之间的无缝通信。本文件涵盖核心架构组件和概念。
@@ -116,7 +117,7 @@ class Session(BaseSession[RequestT, NotificationT, ResultT]):
    - 使用 Server-Sent Events（服务器推送事件）进行服务器到客户端的消息传递
    - 使用 HTTP POST 进行客户端到服务器的消息传递
 
-所有传输均使用 [JSON-RPC](https://www.jsonrpc.org/) 2.0 来交换消息。详细信息请参阅 [规范](https://spec.modelcontextprotocol.io)。
+所有传输均使用 [JSON-RPC](https://www.jsonrpc.org/) 2.0 来交换消息。详细信息请参阅 [规范](/spec)。
 
 ### 消息类型
 

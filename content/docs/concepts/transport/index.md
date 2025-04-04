@@ -2,7 +2,7 @@
 date: '2025-03-27T11:47:22+08:00'
 draft: false
 title: "传输机制"
-description: "了解MCP的通信机制"
+description: "了解 MCP 的通信机制"
 ---
 
 Model Context Protocol (MCP) 中的传输机制为客户端与服务器之间的通信提供了基础。传输层负责管理消息的发送和接收的底层机制。
@@ -62,11 +62,10 @@ MCP 包含两种标准的传输实现：
 - 创建命令行工具
 - 实现本地集成
 - 需要简单的进程通信
-- 在 shell 脚本中工作
+- 在 Shell 脚本中工作
 
 {{< tabpane persist="lang" text=true >}}
 {{% tab header="TypeScript（服务端）" %}}
-
 
 ```typescript
 const server = new Server({
@@ -337,7 +336,7 @@ class ExampleTransport implements Transport {
 {{% /tab %}}
 {{% tab header="Python" %}}
 
-注意，虽然 MCP 服务器通常使用 asyncio 实现，但我们推荐使用 `anyio` 实现低级接口（如传输），以获得更广泛的兼容性。
+注意，虽然 MCP 服务器通常使用 `asyncio` 实现，但我们推荐使用 `anyio` 实现低级接口（如传输），以获得更广泛的兼容性。
 
 ```python
 @contextmanager

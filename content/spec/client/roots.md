@@ -18,7 +18,7 @@ weight: 40
 
 ## 功能
 
-支持根目录的客户端在[初始化](../basic/lifecycle#initialization)时**必须**声明其 `roots` 能力：
+支持根目录的客户端在[初始化](/spec/basic/lifecycle#initialization)时**必须**声明其 `roots` 能力：
 
 ```json
 {

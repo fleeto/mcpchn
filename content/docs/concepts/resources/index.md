@@ -2,6 +2,7 @@
 date: '2025-03-27T10:12:08+08:00'
 draft: false
 title: "资源"
+weight: 20
 description: "将服务器中的数据和内容暴露给LLMs"
 ---
 

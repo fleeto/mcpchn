@@ -6,7 +6,7 @@ weight: 10
 
 > **协议修订版本**: 2025-03-26
 
-模型上下文协议 (Model Context Protocol, MCP) 提供一种标准化的方法，让服务器向客户端公开提示模板。提示允许服务器提供与语言模型互动的结构化消息和指令。客户端可以发现可用的提示，检索其内容，并提供参数进行个性化定制。
+模型上下文协议（Model Context Protocol, MCP）提供一种标准化的方法，让服务器向客户端公开提示模板。提示允许服务器提供与语言模型互动的结构化消息和指令。客户端可以发现可用的提示，检索其内容，并提供参数进行个性化定制。
 
 ## 用户交互模型
 
@@ -22,7 +22,7 @@ weight: 10
 
 ## 功能
 
-支持提示的服务器**必须**在[初始化](../basic/lifecycle#initialization)期间声明 `prompts` 功能：
+支持提示的服务器**必须**在[初始化](/spec/basic/lifecycle#initialization)期间声明 `prompts` 功能：
 
 ```json
 { "capabilities": { "prompts": { "listChanged": true } } }

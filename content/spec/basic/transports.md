@@ -19,7 +19,7 @@ MCP 使用 JSON-RPC 编码消息。JSON-RPC 消息**必须**使用 UTF-8 编码�
 
 ## stdio
 
-在**stdio**传输方式中：
+在 **stdio** 传输方式中：
 
 - 客户端以子进程形式启动 MCP 服务器。
 - 服务器从其标准输入 (`stdin`) 读取 JSON-RPC 消息，并通过标准输出 (`stdout`) 发送消息。
@@ -49,7 +49,7 @@ sequenceDiagram
 > 此传输方式替代了协议版本 2024-11-05 提出的 HTTP+SSE
 传输方式。参见下文[向后兼容性](#向后兼容性) 指南。
 
-在**Streamable HTTP**传输方式中，服务器作为能够处理多个客户端连接的独立进程运行。这种传输方式使用 HTTP POST 和 GET 请求。服务器可以选择使用
+在 **Streamable HTTP** 传输方式中，服务器作为能够处理多个客户端连接的独立进程运行。这种传输方式使用 HTTP POST 和 GET 请求。服务器可以选择使用
 [服务器发送事件（Server-Sent Events, SSE）](https://en.wikipedia.org/wiki/Server-sent_events) 来流式发送多个服务器消息。这种方式同时支持基础功能的 MCP 服务器以及支持流式通信和从服务器向客户端发出通知与请求的更高级服务器。
 
 服务器**必须**提供一个支持 POST 和 GET 方法的 HTTP 端点路径（以下称为**MCP 端点**）。例如，这可以是类似 `https://example.com/mcp` 的 URL。
@@ -106,7 +106,7 @@ sequenceDiagram
 为了支持恢复中断的连接，以及重新传递可能丢失的消息：
 
 1. 服务器**可以**在其 SSE 事件中附加一个 `id` 字段，如 [SSE 标准](https://html.spec.whatwg.org/multipage/server-sent-events.html#event-stream-interpretation) 所描述。
-   - 如果存在，ID**必须**在同一 [会话](#会话管理) 中的所有流中全局唯一——或在未使用会话管理时，对特定客户端的所有流中全局唯一。
+   - 如果存在，ID 在同一 [会话](#会话管理) 中的所有流中**必须**全局唯一；如果没有使用会话管理时，对特定客户端的所有流中全局唯一。
 2. 如果客户端希望在连接中断后恢复，它**应当**向 MCP 端点发出 HTTP GET 请求，并包含 [`Last-Event-ID`](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-last-event-id-header) 头，以指示其接收的最后事件 ID。
    - 服务器**可以**使用此头，在中断的流上重新发送从最后事件 ID 之后应该发送的消息，并从该点恢复流。
    - 服务器**不得**重新发送本应在不同流中交付的消息。
@@ -115,11 +115,11 @@ sequenceDiagram
 
 ### 会话管理
 
-MCP**会话**是通过客户端与服务器之间的逻辑交互组成的，这些交互从 [初始化阶段](lifecycle) 开始。为了支持希望建立有状态会话的服务器：
+MCP **会话**是通过客户端与服务器之间的逻辑交互组成的，这些交互从[初始化阶段](/spec/basic/lifecycle) 开始。为了支持希望建立有状态会话的服务器：
 
 1. 使用 Streamable HTTP 传输的服务器**可以**在初始化时分配会话 ID，并在包含 `InitializeResult` 的 HTTP 响应的 `Mcp-Session-Id` 头中返回。
    - 会话 ID **应当**是全局唯一且加密安全的（例如，安全生成的 UUID、JWT 或加密哈希）。
-   - 会话 ID **必须**仅包含可见的 ASCII 字符（范围从 0x21 到 0x7E）。
+   - 会话 ID **必须**仅包含可见的 ASCII 字符（范围从 `0x21` 到 `0x7E`）。
 2. 如果服务器在初始化期间返回了 `Mcp-Session-Id`，使用 Streamable HTTP 传输的客户端在后续的所有 HTTP 请求中**必须**在 `Mcp-Session-Id` 头中包含此会话 ID。
    - 需要会话 ID 的服务器**应当**在收到初始化请求以外的不含 `Mcp-Session-Id` 头的请求时，返回 HTTP 400 Bad Request。
 3. 服务器**可以**随时终止会话，之后它**必须**对包含该会话 ID 的请求返回 HTTP `404 Not Found`。
@@ -174,7 +174,7 @@ sequenceDiagram
 
 **服务器**希望支持较旧的客户端时应当：
 
-- 继续同时托管旧传输方式的 SSE 和 POST 端点，与新的 Streamable HTTP 传输定义的 “MCP 端点” 并行。
+- 继续同时托管旧传输方式的 SSE 和 POST 端点，与新的 Streamable HTTP 传输定义的“MCP 端点”并行。
   - 也可以将旧的 POST 端点与新的 MCP 端点合并，但这可能会引入不必要的复杂性。
 
 **客户端**希望支持较旧的服务器时应当：
