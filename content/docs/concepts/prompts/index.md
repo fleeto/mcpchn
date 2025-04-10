@@ -293,7 +293,7 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
 ```
 
 {{% /tab %}}
-{{% tab header="TypeScript" %}}
+{{% tab header="Python" %}}
 
 ```python
 from mcp.server import Server
